@@ -10,8 +10,6 @@ class LoginsController < ApplicationController
   end
 
   def prompt_ga
-    p 'Callback GA'
-    p "#{ENV['DOMAIN']}#{login_callback_ga_path}"
     if session[:token_analytics].blank?
       ga_alias = Google::Apis::AnalyticsV3
       @ga = ga_alias::AnalyticsService.new
@@ -38,7 +36,7 @@ class LoginsController < ApplicationController
       redirect_to login_path
     else
       begin
-        token = api.authorize({:oauth2_callback => "#{ENV['DOMAIN']}#{login_callback_path}"})
+        token = api.authorize({:oauth2_callback => login_callback_url})
       rescue AdsCommon::Errors::OAuth2VerificationRequired => e
         @login_url = e.oauth_url
       end
@@ -55,7 +53,6 @@ class LoginsController < ApplicationController
         flash.notice = 'Authorized successfully'
         oauth2_ga = Oauth2Token.new(access_token: session[:token_analytics]['access_token'], token_type: "analytics", refresh_token: session[:token_analytics]['refresh_token'], expiry: session[:token_analytics]['expires_in'], issued_at: session[:token_analytics]['issued_at'])
         return redirect_to root_path if oauth2_ga.save
-
         return  redirect_to login_path
       end
     rescue Signet::AuthorizationError => e
@@ -70,7 +67,7 @@ class LoginsController < ApplicationController
     begin
       session[:token_adwords] = api.authorize(
           {
-            :oauth2_callback => "#{ENV['DOMAIN']}#{login_callback_path}",
+            :oauth2_callback => login_callback_url,
             :oauth2_verification_code => params[:code]
           }
       )
