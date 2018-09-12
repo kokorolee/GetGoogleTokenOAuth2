@@ -47,6 +47,7 @@ class LoginsController < ApplicationController
     client = create_analytis__request()
     begin
       client.code = params['code']
+      p 'session ga'
       p session[:token_analytics] = client.fetch_access_token!
       if session[:token_analytics]
         flash.notice = 'Authorized successfully'
@@ -56,8 +57,9 @@ class LoginsController < ApplicationController
         return  redirect_to login_path
       end
     rescue Signet::AuthorizationError => e
+      p e
       flash.alert = 'Authorization failed'
-      redirect_to login_prompt_path
+      redirect_to login_path
     end
   end
 
