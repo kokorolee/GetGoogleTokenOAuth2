@@ -22,11 +22,9 @@ class LoginsController < ApplicationController
         :redirect_uri => "#{ENV['DOMAIN']}#{login_callback_ga_path}"
       )
       redirect_to(@ga.authorization.authorization_uri.to_s)
-  else
-    redirect_to root_path
-  end
-
-
+    else
+      redirect_to root_path
+    end
   end
 
 
@@ -47,16 +45,19 @@ class LoginsController < ApplicationController
 
   def callback_ga
     client = create_analytis__request()
-    client.code = params['code']
-    session[:token_analytics] = client.fetch_access_token!
-    if session[:token_analytics]
-      flash.notice = 'Authorized successfully'
-      oauth2_ga = Oauth2Token.new(access_token: session[:token_analytics]['access_token'], token_type: "analytics", refresh_token: session[:token_analytics]['refresh_token'], expiry: session[:token_analytics]['expires_in'], issued_at: session[:token_analytics]['issued_at'])
-      return redirect_to root_path if oauth2_ga.save
+    begin
+      client.code = params['code']
+      p session[:token_analytics] = client.fetch_access_token!
+      if session[:token_analytics]
+        flash.notice = 'Authorized successfully'
+        oauth2_ga = Oauth2Token.new(access_token: session[:token_analytics]['access_token'], token_type: "analytics", refresh_token: session[:token_analytics]['refresh_token'], expiry: session[:token_analytics]['expires_in'], issued_at: session[:token_analytics]['issued_at'])
+        return redirect_to root_path if oauth2_ga.save
 
-      return  redirect_to login_path
-    else
-      redirect_to login_path
+        return  redirect_to login_path
+      rescue Signet::AuthorizationError => e
+        flash.alert = 'Authorization failed'
+        redirect_to login_prompt_path
+      end
     end
   end
 
