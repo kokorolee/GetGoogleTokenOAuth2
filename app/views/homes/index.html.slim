@@ -1,0 +1,20 @@
+p
+  | Hello
+- if flash[:alert]
+  .alert
+    = flash[:alert]
+- if flash[:notice]
+  .notice
+    = flash[:notice]
+= link_to 'logout', login_logout_path if session[:token_adwords].present?
+p
+  = link_to 'Get token_adwords', login_prompt_path if session[:token_adwords].blank?
+p
+  = link_to 'Get token_analytics', login_prompt_ga_path if session[:token_analytics].blank?
+h1
+  | Your token_adwords token:
+= @token_adwords.inspect if @token_adwords.present?
+hr
+h1
+  | Your token_analytics token:
+= @token_analytics.inspect if @token_analytics.present?

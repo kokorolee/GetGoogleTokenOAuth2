@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: oauth2_configs
+#
+#  id               :bigint(8)        not null, primary key
+#  ClientID         :string
+#  ClientSecret     :string
+#  EndpointAuthURL  :string
+#  EndpointTokenURL :string
+#  RedirectURL      :string
+#  Scopes           :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ClientID: MyString
+  ClientSecret: MyString
+  EndpointAuthURL: MyString
+  EndpointTokenURL: MyString
+  RedirectURL: MyString
+  Scopes: MyString
+
+two:
+  ClientID: MyString
+  ClientSecret: MyString
+  EndpointAuthURL: MyString
+  EndpointTokenURL: MyString
+  RedirectURL: MyString
+  Scopes: MyString

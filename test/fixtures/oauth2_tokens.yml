@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: oauth2_tokens
+#
+#  id            :bigint(8)        not null, primary key
+#  access_token  :string
+#  token_type    :string
+#  refresh_token :string
+#  expiry        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  access_token: MyString
+  token_type: MyString
+  refresh_token: MyString
+  expiry: MyString
+
+two:
+  access_token: MyString
+  token_type: MyString
+  refresh_token: MyString
+  expiry: MyString

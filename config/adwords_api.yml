@@ -1,0 +1,15 @@
+---
+# This is an example configuration file for the AdWords API client library.
+# Please fill in the required fields, and copy it over to your home directory.
+:authentication:
+  :method: OAuth2
+  :oauth2_client_id: 471993607899-b9jroakasqlafkp0at5l76fdps6cvjr9.apps.googleusercontent.com
+  :oauth2_client_secret: goHZRbOWTAKKfhS_y9MnxrqS
+  # Other parameters.
+  :developer_token: DL32AVsBECtL1tj8AU9fcA
+  :client_customer_id: 403-552-7825
+  :user_agent: demo-ruby-ads-api
+:connection:
+  :enable_gzip: false
+:library:
+  :log_level: INFO

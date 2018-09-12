@@ -1,0 +1,16 @@
+## Include correct information about the app and key details
+## And rename this file to ga_config.yml
+service_account_email: analytics1@go-adswords-06082018.iam.gserviceaccount.com
+key_file: './Go-Adswords-06082018-77e26057fb45.p12'
+key_secret: notasecret
+profileID: 101406220685808230620
+application_name: go-get-g-token
+application_version: 1.0
+
+:method: OAuth2
+:oauth2_client_id: 471993607899-b9jroakasqlafkp0at5l76fdps6cvjr9.apps.googleusercontent.com
+:oauth2_client_secret: goHZRbOWTAKKfhS_y9MnxrqS
+# Other parameters.
+:developer_token: DL32AVsBECtL1tj8AU9fcA
+:client_customer_id: 403-552-7825
+:user_agent: demo-ruby-ga-api
