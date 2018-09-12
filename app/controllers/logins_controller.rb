@@ -10,6 +10,8 @@ class LoginsController < ApplicationController
   end
 
   def prompt_ga
+    p 'Callback GA'
+    p "#{ENV['DOMAIN']}#{login_callback_ga_path}"
     if session[:token_analytics].blank?
       ga_alias = Google::Apis::AnalyticsV3
       @ga = ga_alias::AnalyticsService.new
