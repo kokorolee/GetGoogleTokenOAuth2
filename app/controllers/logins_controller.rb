@@ -21,7 +21,7 @@ class LoginsController < ApplicationController
         :scope => 'https://www.googleapis.com/auth/analytics.readonly',
         :client_id => ENV['OAUTH2_CLIENT_ID'],
         :client_secret => ENV['OAUTH2_CLIENT_SECRET'],
-        :redirect_uri => "#{ENV['DOMAIN']}#{login_callback_ga_path}"
+        :redirect_uri => login_callback_ga_url
       )
       redirect_to(@ga.authorization.authorization_uri.to_s)
     else
