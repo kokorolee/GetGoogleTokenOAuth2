@@ -54,10 +54,10 @@ class LoginsController < ApplicationController
         return redirect_to root_path if oauth2_ga.save
 
         return  redirect_to login_path
-      rescue Signet::AuthorizationError => e
-        flash.alert = 'Authorization failed'
-        redirect_to login_prompt_path
       end
+    rescue Signet::AuthorizationError => e
+      flash.alert = 'Authorization failed'
+      redirect_to login_prompt_path
     end
   end
 
