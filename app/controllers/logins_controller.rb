@@ -46,11 +46,21 @@ class LoginsController < ApplicationController
   end
 
   def callback_ga
-    client = create_analytis__request()
+    ga_alias = Google::Apis::AnalyticsV3
+    @ga = ga_alias::AnalyticsService.new
+    @ga.authorization = Signet::OAuth2::Client.new(
+      :authorization_uri => 'https://accounts.google.com/o/oauth2/auth',
+      :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
+      :scope => 'https://www.googleapis.com/auth/analytics.readonly',
+      :client_id => ENV['OAUTH2_CLIENT_ID'],
+      :client_secret => ENV['OAUTH2_CLIENT_SECRET'],
+      :redirect_uri => login_callback_ga_url
+    )
+
     begin
-      client.code = params['code']
+      @ga.authorization.code = params['code']
       p 'session ga'
-      p session[:token_analytics] = client.fetch_access_token!
+      p session[:token_analytics] = @ga.authorization.fetch_access_token!
       if session[:token_analytics]
         flash.notice = 'Authorized successfully'
         oauth2_ga = Oauth2Token.new(access_token: session[:token_analytics]['access_token'], token_type: "analytics", refresh_token: session[:token_analytics]['refresh_token'], expiry: session[:token_analytics]['expires_in'], issued_at: session[:token_analytics]['issued_at'])
