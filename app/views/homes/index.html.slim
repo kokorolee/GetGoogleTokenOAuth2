@@ -15,12 +15,19 @@ h1
   | Your token_adwords token:
 = @token_adwords.inspect if @token_adwords.present?
 
+p access_token
 textarea rows='2'
   = @token_adwords.try(:access_token)
-
+p refresh_token
+textarea rows='2'
+  = @token_adwords.try(:refresh_token)
 hr
 h1
   | Your token_analytics token:
 = @token_analytics.inspect if @token_analytics.present?
+p access_token
 textarea rows='2'
   = @token_analytics.try(:access_token)
+p refresh_token
+textarea rows='2'
+  = @token_analytics.try(:refresh_token)
