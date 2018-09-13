@@ -8,7 +8,7 @@
   # Other parameters.
   :developer_token: DL32AVsBECtL1tj8AU9fcA
   :client_customer_id: 403-552-7825
-  :user_agent: demo-ruby-ads-api
+  :user_agent: GoAds06092018Web
 :connection:
   :enable_gzip: false
 :library:

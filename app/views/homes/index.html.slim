@@ -14,7 +14,13 @@ p
 h1
   | Your token_adwords token:
 = @token_adwords.inspect if @token_adwords.present?
+
+textarea rows='2'
+  = @token_adwords.try(:access_token)
+
 hr
 h1
   | Your token_analytics token:
 = @token_analytics.inspect if @token_analytics.present?
+textarea rows='2'
+  = @token_analytics.try(:access_token)
