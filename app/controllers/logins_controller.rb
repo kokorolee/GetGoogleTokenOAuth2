@@ -59,7 +59,7 @@ class LoginsController < ApplicationController
       end
     rescue Signet::AuthorizationError => e
       p e
-      flash.alert = 'Authorization failed'
+      flash.alert = "Authorization failed #{e}"
       redirect_to login_path
     end
   end
