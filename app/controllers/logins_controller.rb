@@ -21,6 +21,8 @@ class LoginsController < ApplicationController
         :client_secret => ENV['OAUTH2_CLIENT_SECRET'],
         :redirect_uri => login_callback_ga_url
       )
+      p 'xxx'
+      p @ga
       redirect_to(@ga.authorization.authorization_uri.to_s)
     else
       redirect_to root_path
