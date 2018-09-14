@@ -9,3 +9,11 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = yield
+
+script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117767126-2"
+javascript:
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117767126-2');
