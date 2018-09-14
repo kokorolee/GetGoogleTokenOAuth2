@@ -13,6 +13,8 @@
 
 class Oauth2Token < ApplicationRecord
 
+  validates :access_token, presence: true
+
   def self.refresh_token_if_expired
     if self.token_expired?
       response    = RestClient.post "#{ENV['DOMAIN']}oauth2/token", :grant_type => 'refresh_token', :refresh_token => self.refresh_token, :client_id => ENV['APP_ID'], :client_secret => ENV['APP_SECRET']
