@@ -6,6 +6,5 @@ class HomesController < ApplicationController
 
 
     @allToken = Oauth2Token.all.order(created_at: :DESC)
-
   end
 end
