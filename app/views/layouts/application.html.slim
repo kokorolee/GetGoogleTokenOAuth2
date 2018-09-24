@@ -8,6 +8,11 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    .notice
+      = notice
+    .alert
+      = alert
+      
     = yield
 
 script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117767126-2"

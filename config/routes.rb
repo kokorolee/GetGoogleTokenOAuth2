@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :gads_auths
   resources :oauth2_tokens
   resources :oauth2_configs

@@ -72,3 +72,6 @@ gem 'rest-client', '~> 2.0', '>= 2.0.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim'
 gem 'pry-byebug'
+
+gem 'rails_admin', '~> 1.3'
+gem 'devise'

@@ -31,21 +31,3 @@ textarea rows='2'
 p refresh_token
 textarea rows='2'
   = @token_analytics.try(:refresh_token)
-
-
-hr
-p
-|All token
-ul
-  - @allToken.each do |k|
-    li
-      |ID:
-      = k.id
-      br
-      b
-        | access_token #{k.token_type}
-      textarea rows='2'
-        = k.access_token
-      | refresh_token
-      textarea rows='2'
-        = k.refresh_token
