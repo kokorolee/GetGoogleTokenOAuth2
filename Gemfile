@@ -75,3 +75,5 @@ gem 'pry-byebug'
 
 gem 'rails_admin', '~> 1.3'
 gem 'devise'
+gem 'oauth'
+gem 'omniauth-twitter'

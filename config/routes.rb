@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get 'login/twitter', to: 'logins#twitter'
 
   get '/auth/:provider/callback', to: 'logins#twitter'
-  delete '/logout', to: 'logins#twitter_destroy'
+  get 'login/logout_twitter', to: 'logins#twitter_destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

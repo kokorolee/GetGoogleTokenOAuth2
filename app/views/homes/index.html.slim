@@ -6,8 +6,9 @@ p
 - if flash[:notice]
   .notice
     = flash[:notice]
-= link_to 'logout', login_twitter_destroy_path if session[:token_twitter].present?
-= link_to 'logout', login_logout_path if session[:token_adwords].present?
+= link_to 'logout Twitter', login_logout_twitter_path if params.present?
+= link_to 'logout Google', login_logout_path if session[:token_adwords].present?
+= link_to 'logout Google', login_logout_path if session[:token_analytics].present?
 p
   = link_to 'Get token_adwords', login_prompt_path if session[:token_adwords].blank?
 p
