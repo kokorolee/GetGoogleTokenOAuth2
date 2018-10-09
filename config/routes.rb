@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get "login/prompt_ga", to: 'logins#prompt_ga'
   get "login/callback_ga", to: 'logins#callback_ga'
+  get 'login/twitter', to: 'logins#twitter'
 
+  get '/auth/:provider/callback', to: 'logins#twitter'
+  delete '/logout', to: 'logins#twitter_destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

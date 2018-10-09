@@ -8,6 +8,25 @@ class LoginsController < ApplicationController
 
   def index
   end
+  def twitter
+    @credentials = request.env['omniauth.auth'][:credentials]
+    begin
+      @user = User.from_omniauth(request.env['omniauth.auth'])
+      session[:twitter_id] = @user.id
+      flash[:success] = "Welcome, #{@user.name}!"
+    rescue
+      flash[:warning] = "There was an error while trying to authenticate you..."
+    end
+    redirect_to root_path(token: @credentials.token, secret: @credentials.secret)
+  end
+
+  def twitter_destroy
+    if current_user
+      session.delete(:twitter_id)
+      flash[:success] = 'See you!'
+    end
+    redirect_to root_path
+  end
 
   def prompt_ga
     if session[:token_analytics].blank?

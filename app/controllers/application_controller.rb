@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   private
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  helper_method :current_user
 
   # Returns the API version in use.
   def get_api_version()
@@ -30,8 +35,9 @@ class ApplicationController < ActionController::Base
   def authenticate()
     token_ads = session[:token_adwords]
     token_ga = session[:token_analytics]
-    return redirect_to login_path if token_ads.nil? && token_ga.nil?
-    return !token_ads.nil? || !token_ga.nil?
+    token_twitter = session[:twitter_id]
+    return redirect_to login_path if token_ads.nil? && token_ga.nil? && token_twitter.nil?
+    return !token_ads.nil? || !token_ga.nil? || !token_twitter.nil?
   end
 
   # Returns an API object.

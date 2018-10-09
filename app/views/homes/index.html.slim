@@ -6,28 +6,42 @@ p
 - if flash[:notice]
   .notice
     = flash[:notice]
+= link_to 'logout', login_twitter_destroy_path if session[:token_twitter].present?
 = link_to 'logout', login_logout_path if session[:token_adwords].present?
 p
   = link_to 'Get token_adwords', login_prompt_path if session[:token_adwords].blank?
 p
   = link_to 'Get token_analytics', login_prompt_ga_path if session[:token_analytics].blank?
-h1
-  | Your token_adwords token:
-= @token_adwords.inspect if @token_adwords.present?
+p
+  = link_to 'Get token_analytics', '/auth/twitter' if session[:token_twitter].blank?
+- if @token_adwords.present?
+  h1
+    | Your token_adwords token:
+  = @token_adwords.inspect if @token_adwords.present?
 
-p access_token
-textarea rows='2'
-  = @token_adwords.try(:access_token)
-p refresh_token
-textarea rows='2'
-  = @token_adwords.try(:refresh_token)
-hr
-h1
-  | Your token_analytics token:
-= @token_analytics.inspect if @token_analytics.present?
-p access_token
-textarea rows='2'
-  = @token_analytics.try(:access_token)
-p refresh_token
-textarea rows='2'
-  = @token_analytics.try(:refresh_token)
+  p access_token
+  textarea rows='2'
+    = @token_adwords.try(:access_token)
+  p refresh_token
+  textarea rows='2'
+    = @token_adwords.try(:refresh_token)
+  hr
+- if @token_analytics.present?
+  h1
+    | Your token_analytics token:
+  = @token_analytics.inspect if @token_analytics.present?
+  p access_token
+  textarea rows='2'
+    = @token_analytics.try(:access_token)
+  p refresh_token
+  textarea rows='2'
+    = @token_analytics.try(:refresh_token)
+- if params.present?
+  h1
+    | Your token_twitter token:
+  p access_token
+  textarea rows='2'
+    = params[:token]
+  p refresh_token
+  textarea rows='2'
+    = params[:secret]
